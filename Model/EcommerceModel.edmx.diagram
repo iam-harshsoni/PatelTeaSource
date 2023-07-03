@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3209deab907c4aeea389ec09d9eff6af" Name="Diagram1">
+        <EntityTypeShape EntityType="h2m_EcommerceModel.cart_master" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.cart_master_details" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.login_master" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.offer_master_details" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.offerScheme" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.order_history" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.order_history_details" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.order_maseter_feedback" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.order_master" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.order_master_details" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.order_master_payment" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.product_master" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.product_review" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.ProductPrice" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.pwd_Recovery" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.role_master" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.role_master_details" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.shipping_address_master" Width="1.5" PointX="3" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.state_price" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="h2m_EcommerceModel.user_master" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_cart_master_user_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_login_master_user_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_offerScheme_product_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_order_history_offerScheme" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_order_history_order_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_order_history_user_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_product_review_product_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_ProductPrice_product_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_product_review_user_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_role_detail_master_role_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_role_master_user_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_role_detail_master_user_master" ManuallyRouted="false" />
+        <AssociationConnector Association="h2m_EcommerceModel.FK_shipping_address_master_user_master" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

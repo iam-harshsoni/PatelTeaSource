@@ -1,0 +1,646 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Client.master.cs" Inherits="PatelTeaSource.CS.Client" %>
+
+<!DOCTYPE html>
+
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Patel Tea Packers</title>
+
+    <link rel="shortcut icon" type="image/png" href="../../Template/images/green-tea-leaf-png-3.png" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="text/css" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" />
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700'
+        rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="../Template/assets/css/animate.css" />
+    <link rel="stylesheet" href="../Template/assets/css/hover.css" />
+    <link rel="stylesheet" href="../Template/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../Template/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../Template/assets/css/nivo-slider.css" />
+    <link rel="stylesheet" href="../Template/assets/css/flickity.min.css" />
+    <link rel="stylesheet" href="../Template/assets/css/main.css" />
+    <link rel="stylesheet" href="../Template/assets/css/responsive.css" />
+    <link rel="stylesheet" href="../Template/assets/css/color/default.css" />
+    <script src="../AdminSide/AdminSideTemplate/app-assets/js/core/libraries/jquery.min.js"></script>
+
+
+    <script src="../Template/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+    <!-- 
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "1e9facb6-9190-4d1f-aa7d-4db4b2f293c5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+-->
+
+    <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+
+            .tooltip .tooltiptext {
+                visibility: hidden;
+                width: 120px;
+                background-color: black;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 5px 0;
+                /* Position the tooltip */
+                position: absolute;
+                z-index: 1;
+            }
+
+            .tooltip:hover .tooltiptext {
+                visibility: visible;
+            }
+
+
+
+        .cart {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            left: 85%;
+            -moz-border-radius: 9999em;
+            -webkit-border-radius: 9999em;
+            border-radius: 9999em;
+            border: none;
+            background: #e27900;
+            cursor: pointer;
+            float: right;
+            position: absolute;
+            top: 0;
+            z-index: 3;
+            top: 25%;
+        }
+
+            .cart:hover {
+                -moz-box-shadow: inset 0 0 7px 0 rgba(0, 0, 0, 0.5);
+                -webkit-box-shadow: inset 0 0 7px 0 rgba(0, 0, 0, 0.5);
+                box-shadow: inset 0 0 7px 0 rgba(0, 0, 0, 0.5);
+            }
+
+                .cart:hover .popup {
+                    visibility: visible;
+                    opacity: 1;
+                    pointer-events: auto;
+                    -webkit-animation-duration: 200ms;
+                    -webkit-animation-name: show-popup;
+                    -webkit-animation-direction: normal;
+                    -webkit-animation-timing-function: cubic-bezier(1, 0.18, 1, 0.93);
+                    -moz-animation-duration: 200ms;
+                    -moz-animation-name: show-popup;
+                    -moz-animation-direction: normal;
+                    -moz-animation-timing-function: cubic-bezier(1, 0.18, 1, 0.93);
+                    -o-animation-duration: 200ms;
+                    -o-animation-name: show-popup;
+                    -o-animation-direction: normal;
+                    -o-animation-timing-function: cubic-bezier(1, 0.18, 1, 0.93);
+                    animation-duration: 200ms;
+                    animation-name: show-popup;
+                    animation-direction: normal;
+                    animation-timing-function: cubic-bezier(1, 0.18, 1, 0.93);
+                }
+        /* popup window style */
+
+        .popup {
+            overflow-y: scroll;
+            height: 500px;
+            padding: 20px;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            top: 100%;
+            width: 250px;
+            margin-left: -205px;
+            margin-top: 5px;
+            background: #ffffff;
+            border: 1px solid #cbcbcb;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            -moz-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+        }
+
+            .popup:after {
+                position: absolute;
+                content: ' ';
+                top: -30px;
+                height: 30px;
+                width: 100%;
+            }
+
+            .popup:before {
+                position: absolute;
+                content: ' ';
+                left: 220px;
+                top: -9px;
+                width: 16px;
+                height: 16px;
+                border-top: 1px solid #cbcbcb;
+                border-right: 1px solid #cbcbcb;
+                background: #ffffff;
+                -moz-box-shadow: 1px -1px 1px 0 rgba(0, 0, 0, 0.2);
+                -webkit-box-shadow: 1px -1px 1px 0 rgba(0, 0, 0, 0.2);
+                box-shadow: 1px -1px 1px 0 rgba(0, 0, 0, 0.2);
+                -moz-transform: rotate(-45deg);
+                -ms-transform: rotate(-45deg);
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+            }
+
+        .cart {
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAGPSURBVHjajNNNi85RGAbw3zwzI/XMmEHeFYmSvJRSYsOWfAHZ+wAWakp8AAs+A5ImKzujUfKapQnZzIaVxzCYGcMzXRbuydO/Wcxdd+ecq3Ouc67rvk9fkqcY8T8mcA3frSIGcLKBfcMaq4wWpjCNjwi2o71aggGcQT92YBybcLTIZ7ABX7G+xlF8qvWgJMs5kuRFksUkDypPJLmd5FSSW0lOJ7lT+GSSt70E7SQ38i+eJDmSZE+SA0n21bi35heTdJMstnrkzOMlfmELhnEVQxjDOlzBDxwv2c/7kvR6sh+Py8QLeFde9GMJ3arQw/JqrNUwtVMVaWMbFnC51pfwGQfrhR1MNgnm8LpuPVsNdr0236xKncdgyZ0eaBD8xhss4hyOlea1hQ1ha0mZwM8mwRKe4VVJ6K9Daj6PD9V0j7DUNBH6sLNcn8efOtytp7cxW82U3j5Yzs1J7ieZSnI3yXDho0nGC7+XZGMSKxEcSjJbDdVJsrvwww18VxKtFf7HTH2wObwvGfClgS/A3wEAjJAlBBKFdqAAAAAASUVORK5CYII=);
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .car {
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABSCAABFVgAADqXAAAXb9daH5AAAAGPSURBVHjajNNNi85RGAbw3zwzI/XMmEHeFYmSvJRSYsOWfAHZ+wAWakp8AAs+A5ImKzujUfKapQnZzIaVxzCYGcMzXRbuydO/Wcxdd+ecq3Ouc67rvk9fkqcY8T8mcA3frSIGcLKBfcMaq4wWpjCNjwi2o71aggGcQT92YBybcLTIZ7ABX7G+xlF8qvWgJMs5kuRFksUkDypPJLmd5FSSW0lOJ7lT+GSSt70E7SQ38i+eJDmSZE+SA0n21bi35heTdJMstnrkzOMlfmELhnEVQxjDOlzBDxwv2c/7kvR6sh+Py8QLeFde9GMJ3arQw/JqrNUwtVMVaWMbFnC51pfwGQfrhR1MNgnm8LpuPVsNdr0236xKncdgyZ0eaBD8xhss4hyOlea1hQ1ha0mZwM8mwRKe4VVJ6K9Daj6PD9V0j7DUNBH6sLNcn8efOtytp7cxW82U3j5Yzs1J7ieZSnI3yXDho0nGC7+XZGMSKxEcSjJbDdVJsrvwww18VxKtFf7HTH2wObwvGfClgS/A3wEAjJAlBBKFdqAAAAAASUVORK5CYII=);
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .checkout {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .checkout-button {
+            padding: 3px 5px;
+            background: #e54040;
+            -moz-box-shadow: inset 0 2px 7px 0 rgba(255, 255, 255, 0.3);
+            -webkit-box-shadow: inset 0 2px 7px 0 rgba(255, 255, 255, 0.3);
+            box-shadow: inset 0 2px 7px 0 rgba(255, 255, 255, 0.3);
+            border: 1px solid #e06b6b;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            color: #ffffff;
+        }
+
+            .checkout-button:hover {
+                background: #e54040;
+                -moz-box-shadow: none;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+            .checkout-button:active {
+                background: #e54040;
+                -moz-box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+                -webkit-box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+                box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            }
+
+
+        /*------------------------------*/
+        #ex4 .p1[data-count]:after {
+            position: absolute;
+            right: 10%;
+            top: 8%;
+            content: attr(data-count);
+            font-size: 40%;
+            padding: .2em;
+            border-radius: 50%;
+            line-height: 1em;
+            color: white;
+            background: rgba(255,0,0,.85);
+            text-align: center;
+            min-width: 1em;
+            //font-weight:bold;
+        }
+
+
+        #ex3 .fa-stack[data-count]:after {
+            position: absolute;
+            right: 0%;
+            top: 1%;
+            content: attr(data-count);
+            font-size: 30%;
+            padding: .6em;
+            border-radius: 50%;
+            line-height: .8em;
+            color: white;
+            background: rgba(255,0,0,.85);
+            text-align: center;
+            min-width: 1em;
+            font-weight: bold;
+        }
+
+
+        /* on ex2 if you include bootstrap v3 css the number is a rounded circle with the .has-badge class */
+        #ex2 .fa-stack[data-count]:after {
+            position: absolute;
+            right: 0%;
+            top: 1%;
+            content: attr(data-count);
+            font-size: 30%;
+            padding: .6em;
+            border-radius: 999px;
+            line-height: .75em;
+            color: white;
+            background: rgba(255,0,0,.85);
+            text-align: center;
+            min-width: 2em;
+            font-weight: bold;
+        }
+
+        .etc {
+            position: absolute;
+            right: 0%;
+            top: 1%;
+            content: attr(data-count);
+            font-size: 35%;
+            padding: .6em;
+            border-radius: 999px;
+            line-height: .75em;
+            color: white;
+            background: rgba(255,0,0,.85);
+            text-align: center;
+            min-width: 2em;
+            font-weight: bold;
+        }
+
+
+        #ex1 .icon-grey {
+            color: grey;
+        }
+
+        #ex1 i {
+            width: 100px;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        #ex1 .badge:after {
+            content: "100";
+            position: absolute;
+            background: rgba(0,0,255,1);
+            height: 2rem;
+            top: 1rem;
+            right: 1.5rem;
+            width: 2rem;
+            text-align: center;
+            line-height: 2rem;
+            font-size: 1rem;
+            border-radius: 50%;
+            color: white;
+            border: 1px solid blue;
+        }
+
+        /*---------------------------------*/
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="loadpage home style-v2">
+    <form id="form1" runat="server">
+        <div id="wrap">
+
+            <header class="header">
+                <div class="header-inner">
+                    <div class="container">
+                        <!-- Logo -->
+                        <div id="logo" class="logo">
+                            <a href="Home.aspx">
+                                <img alt="Patel Tea Packers" src="../Template/17.png" /></a>
+                        </div>
+
+                        <!-- Main Menu -->
+
+                        <nav id="primary-navigation" class="navbar" role="navigation">
+                            <div class="navbar-inner">
+                                <div class="navbar-header">
+                                    <button type="button" style="right: 115%;" class="navbar-toggle collapsed"
+                                        data-toggle="collapse" data-target="#navbar">
+                                        <span class="sr-only">Toggle navigation</span> <span
+                                            class="icon-bar"></span><span class="icon-bar"></span><span
+                                                class="icon-bar"></span>
+                                    </button>
+                                    <%--<h3 class="navbar-brand">Menu</h3>--%>
+                                </div>
+                                <div>
+                                    <%--  <asp:ContentPlaceHolder ID="menu" runat="server">
+                                    </asp:ContentPlaceHolder>--%>
+
+                                    <div id="navbar" class="navbar-collapse collapse">
+                                        <ul class="nav navbar-nav">
+                                            <li id="li_Home"><a href="Home.aspx">Home</a></li>
+                                            <li id="li_Abt"><a href="AboutUs.aspx">About</a>
+                                                 <%-- <div class="dropdown">
+                                                    <ul class="sub-menu">
+                                                        <li><a href="AwardsCertificate.aspx">Certificates</a></li>
+                                                     </ul>
+                                                </div>--%>
+                                            </li>
+                                            <li><a href="Brands.aspx">Our Brand</a> </li>
+                                            <li id="li_Products"><a href="Products.aspx">Shop</a></li>
+                                          
+                                            <li><a href="Contactus.aspx">Contact Us</a>
+
+                                                <div class="dropdown">
+                                                    <ul class="sub-menu">
+                                                        <li><a href="WhereToBuy.aspx">Locate Us</a></li>
+                                                     </ul>
+                                                </div>
+
+                                            </li>
+                                            <%--<li ><a href="WhereToBuy.aspx">Locate Us</a> </li>
+                                          --%>
+                                              <li ><a href="Blog.aspx">Blog</a> </li>
+                                            <li id="li_MyAcc"><a href="MyAccount.aspx">My Account</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!--/.navbar-collapse -->
+                            </div>
+                        </nav>
+                        <%--<div class="cart">
+                             
+                            <div class="popup" id="pp">
+                                <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                            </div>
+                        </div>--%>
+
+
+                        <%-------------------------------------------------------------------------------%>
+                        <div id="ex4" style="text-align: right">
+                            <span class="p1 fa-stack fa-2x has-badge" style="margin-top: -105px;">
+
+
+                                <asp:Label class="etc" ID="lblProducts" ToolTip="heloo" runat="server" Text="0"></asp:Label>
+                                <i class="p3 fa fa-shopping-cart fa-stack-1x xfa-inverse" style="cursor: pointer" onclick="loadCart()"></i>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <%--------------------------------------------------------------------------------------%>
+                    <%-- <div class="header-right">
+                        <ul class="nav">
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">Register</a></li>
+                        </ul>
+                    </div>--%>
+                </div>
+
+
+                <div>
+                    <asp:ContentPlaceHolder ID="banner" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+
+
+            </header>
+
+            <div id="main-content" class="main-content">
+
+                <div>
+                    <asp:ContentPlaceHolder ID="main" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+            </div>
+            <footer id="footer">
+                <div class="footer-info">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <aside class="widget">
+                                    <h3 class="title">About Us</h3>
+                                    <div class="widget-content contact-us">
+
+                                        <p>
+                                            Explore over 60 years of innovation, creativity and masterblending expertise. For us, tea is more than just a drink. It's been part of our daily lives and the lives of generations of tea lovers 
+                                        </p>
+                                        <p><i class="fa">&#xf0e0;</i><span>pateltea@ymail.com</span></p>
+                                        <p><i class="fa">&#xf095;</i><span>(+91)-2767-247936</span></p>
+                                        <p>
+                                            <i class="fa">&#xf015;</i><span>Unava Bypass Highway, At. &, Dist. Mehsana,(North Gujarat) INDIA</span>
+                                        </p>
+
+                                        <br />
+                                        <div>
+											<div class="embed-responsive embed-responsive-16by9">
+						 
+						
+                                                 <iframe class="embed-responsive-item" width="330" height="235" src="https://www.youtube.com/embed/VznjHGVf01o?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                              </div>
+                                    </div>
+                                </aside>
+                            </div>
+                            <%-- <div class="col-sm-3">
+                            <aside class="widget">
+                                <h3 class="title">For Business</h3>
+                                <div class="widget-content">
+                                    <ul>
+                                        <li><a href="#">Office Coffee</a></li>
+                                        <li><a href="#">Food Service</a></li>
+                                        <li><a href="#">Affiliate Program</a></li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>--%>
+
+                            <div class="col-sm-3">
+                                <aside class="widget">
+                                    <h3 class="title">Site Map</h3>
+                                    <div class="widget-content">
+                                         <a href="Home.aspx">Home</a><br />
+                                       <a href="Blog.aspx">Blog</a><br />
+                                         <a href="Brands.aspx"">Our Brand</a><br />
+                                         <a href="Blog.aspx">Shop</a><br />
+                                        <a href="AboutUs.aspx">About Us</a><br />
+                                        <a href="Contactus.aspx">Contact Us</a><br />
+                                    </div>
+                                    
+                                    <hr />
+                                    <h3 class="title">Follow Us</h3>
+                                    <div class="widget-content">
+                                        <p>Follow Origin on the following social network sites.</p>
+                                        <ul class="social">
+                                            <li><a href="https://www.facebook.com/patelteapackers/" class="hvr-rectangle-out" target="_blank"><i class="fa">&#xf09a;</i></a></li>
+                                            <li><a href="https://www.instagram.com/patelteapackers/" class="hvr-rectangle-out" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                       <%--                     <li><a href="#" class="hvr-rectangle-out" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#" class="hvr-rectangle-out" target="_blank"><i class="fa fa-behance"></i></a></li>--%>
+
+                                        </ul>
+                                    </div>
+                                </aside>
+                            </div>
+                            <div class="col-sm-3">
+                                   <aside class="widget">
+                                    <h3 class="title">
+                                        <img src="../Template/images/Download/payumoney.png" /></h3>
+                                    <div class="widget-content">
+                                        Trusted and Secure Payment with Payumoney
+                                        <br />
+                                        <br />
+                                        <img src="../Template/images/Download/payment-1.png" />
+                                        <br />
+                                        
+                                                 <img style="width: 100px; margin-top: 25px;transform: rotate(10deg);" src="../Template/images/Download/10.png" />
+                                    <img style="width: 100px; margin-top: 25px;" src="../Template/images/Download/comodo-secure-logo-new.png" />
+                                    
+                                    </div>
+                                </aside>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="container">
+                        <div class="col-md-12" style="width: 100%">
+                            <div class="row">
+                                <div class="col-md-4" style="text-align: center; padding-left: 1px !important; padding-right: 4px !important">
+                                    <p style="line-height: 25px; margin-top: 10px;">
+                                        Copyright &copy; 2018 <a href="https://pateltea.co.in">Patel Tea Packers</a>. All Rights Reserved.
+                                    </p>
+
+                                </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4" style="text-align: center; padding-left: 13px">
+
+                                    <p>
+                                        Developed By <a href="http://www.h2mSolution.com">
+                                            <img style="width: 45px;" src="../Template/images/Logo-Banner.png" />
+                                            H2M IT Solutions</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </footer>
+
+        </div>
+
+
+
+    </form>
+
+
+    <div>
+        <asp:ContentPlaceHolder ID="footers" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+
+    <script src="../Template/assets/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="../Template/assets/js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="../Template/assets/js/vendor/flickity.pkgd.min.js"></script>
+    <script src="../Template/assets/js/vendor/jquery.waypoints.min.js"></script>
+    <script src="../Template/assets/js/vendor/sticky.min.js"></script>
+    <script src="../Template/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../Template/assets/js/vendor/jquery.nivo.slider.pack.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js"></script>-->
+
+    <script src="../Template/assets/js/main.js"></script>
+</body>
+</html>
+
+
+
+<script>
+
+    $("#anchorTag").click(function () {
+
+    });
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $("#lblProducts").tooltip();
+    });
+
+    $(function () {
+        $("[rel='tooltip']").tooltip();
+    });
+
+    function makeChange(ancType) {
+        if (ancType == 1) {
+            $("#li_Home").addClass("active");
+            $("#li_Abt").removeClass("active");
+            $("#li_Products").removeClass("active");
+            $("#li_Quality").removeClass("active");
+            $("#li_Awards").removeClass("active");
+            $("#li_ContactUs").removeClass("active");
+            $("#li_WhereToBuy").removeClass("active");
+        }
+        else if (ancType == 2) {
+            $("#li_Home").removeClass("active");
+            $("#li_Abt").addClass("active");
+            $("#li_Products").removeClass("active");
+            $("#li_Quality").removeClass("active");
+            $("#li_Awards").removeClass("active");
+            $("#li_ContactUs").removeClass("active");
+            $("#li_WhereToBuy").removeClass("active");
+        }
+        else if (ancType == 3) {
+            $("#li_Home").removeClass("active");
+            $("#li_Abt").removeClass("active");
+            $("#li_Products").addClass("active");
+            $("#li_Quality").removeClass("active");
+            $("#li_Awards").removeClass("active");
+            $("#li_ContactUs").removeClass("active");
+            $("#li_WhereToBuy").removeClass("active");
+        }
+
+        else if (ancType == 4) {
+            $("#li_Home").removeClass("active");
+            $("#li_Abt").removeClass("active");
+            $("#li_Products").removeClass("active");
+            $("#li_Quality").addClass("active");
+            $("#li_Awards").removeClass("active");
+            $("#li_ContactUs").removeClass("active");
+            $("#li_WhereToBuy").removeClass("active");
+        }
+        else if (ancType == 5) {
+            $("#li_Home").removeClass("active");
+            $("#li_Abt").removeClass("active");
+            $("#li_Products").removeClass("active");
+            $("#li_Quality").removeClass("active");
+            $("#li_Awards").addClass("active");
+            $("#li_ContactUs").removeClass("active");
+            $("#li_WhereToBuy").removeClass("active");
+        }
+        else if (ancType == 6) {
+            $("#li_Home").removeClass("active");
+            $("#li_Abt").removeClass("active");
+            $("#li_Products").removeClass("active");
+            $("#li_Quality").removeClass("active");
+            $("#li_Awards").removeClass("active");
+            $("#li_ContactUs").addClass("active");
+            $("#li_WhereToBuy").removeClass("active");
+        }
+        else if (ancType == 7) {
+            $("#li_Home").removeClass("active");
+            $("#li_Abt").removeClass("active");
+            $("#li_Products").removeClass("active");
+            $("#li_Quality").removeClass("active");
+            $("#li_Awards").removeClass("active");
+            $("#li_ContactUs").removeClass("active");
+            $("#li_WhereToBuy").addClass("active");
+        }
+
+        //  $(this).css('active');
+    }
+
+    function loadCart() {
+        window.location.href = "Cart.aspx";
+    }
+
+</script>

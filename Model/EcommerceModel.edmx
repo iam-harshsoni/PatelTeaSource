@@ -1,0 +1,1333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="h2m_EcommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cart_master">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="ipAdd" Type="nvarchar" MaxLength="100" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="cart_master_details">
+          <Key>
+            <PropertyRef Name="cart_detail_id" />
+          </Key>
+          <Property Name="cart_detail_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cart_id" Type="bigint" />
+          <Property Name="pid" Type="bigint" />
+          <Property Name="qty" Type="int" />
+          <Property Name="rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="offerId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="login_master">
+          <Key>
+            <PropertyRef Name="login_id" />
+          </Key>
+          <Property Name="login_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="role" Type="bigint" />
+          <Property Name="status" Type="int" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="type" Type="int" />
+        </EntityType>
+        <EntityType Name="offer_master_details">
+          <Key>
+            <PropertyRef Name="offer_detail_id" />
+          </Key>
+          <Property Name="offer_detail_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="offerId" Type="bigint" />
+          <Property Name="pId" Type="bigint" />
+          <Property Name="qty" Type="int" />
+          <Property Name="offerrate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="unit" Type="nvarchar" MaxLength="50" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="offerScheme">
+          <Key>
+            <PropertyRef Name="offerId" />
+          </Key>
+          <Property Name="offerId" Type="bigint" Nullable="false" />
+          <Property Name="passedScheme" Type="varchar" MaxLength="150" />
+          <Property Name="upcoming" Type="varchar" MaxLength="150" />
+          <Property Name="pId" Type="bigint" />
+          <Property Name="cDate" Type="datetime" />
+          <Property Name="uDate" Type="datetime" />
+          <Property Name="offer_type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="order_history">
+          <Key>
+            <PropertyRef Name="order_history_id" />
+          </Key>
+          <Property Name="order_history_id" Type="bigint" Nullable="false" />
+          <Property Name="order_id" Type="bigint" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="order_datetime" Type="datetime" />
+          <Property Name="order_status" Type="int" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="gtotal" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="offer_id" Type="bigint" />
+        </EntityType>
+        <EntityType Name="order_history_details">
+          <Key>
+            <PropertyRef Name="order_detail_history_id" />
+          </Key>
+          <Property Name="order_detail_history_id" Type="bigint" Nullable="false" />
+          <Property Name="order_id" Type="bigint" />
+          <Property Name="pid" Type="bigint" />
+          <Property Name="qty" Type="int" />
+          <Property Name="rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="offerId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="order_maseter_feedback">
+          <Key>
+            <PropertyRef Name="order_feedback_id" />
+          </Key>
+          <Property Name="order_feedback_id" Type="bigint" Nullable="false" />
+          <Property Name="order_id" Type="bigint" />
+          <Property Name="msg" Type="nvarchar(max)" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="delete_staus" Type="int" />
+        </EntityType>
+        <EntityType Name="order_master">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="bigint" Nullable="false" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="order_datetime" Type="datetime" />
+          <Property Name="order_status" Type="int" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="gtotal" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="offer_id" Type="bigint" />
+          <Property Name="cartIdTemp" Type="bigint" />
+        </EntityType>
+        <EntityType Name="order_master_details">
+          <Key>
+            <PropertyRef Name="order_detail_id" />
+          </Key>
+          <Property Name="order_detail_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_id" Type="bigint" />
+          <Property Name="pid" Type="bigint" />
+          <Property Name="qty" Type="int" />
+          <Property Name="rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="offerId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="order_master_payment">
+          <Key>
+            <PropertyRef Name="order_payment_id" />
+          </Key>
+          <Property Name="order_payment_id" Type="bigint" Nullable="false" />
+          <Property Name="order_id" Type="bigint" />
+          <Property Name="payment_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="delete_status" Type="int" />
+        </EntityType>
+        <EntityType Name="product_master">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pname" Type="nvarchar(max)" />
+          <Property Name="photo" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="weight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="unit" Type="char" MaxLength="10" />
+          <Property Name="nutritionImg" Type="varchar" MaxLength="150" />
+          <Property Name="shippingCharge" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="offerDisc" Type="int" />
+          <Property Name="offerImg" Type="nvarchar(max)" />
+          <Property Name="cDate" Type="datetime" />
+          <Property Name="uDate" Type="datetime" />
+          <Property Name="taxPer" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="product_review">
+          <Key>
+            <PropertyRef Name="product_review_id" />
+          </Key>
+          <Property Name="product_review_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pId" Type="bigint" />
+          <Property Name="count" Type="int" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="delete_stuats" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="priceId" />
+          </Key>
+          <Property Name="priceId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pId" Type="bigint" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="cDate" Type="datetime" />
+          <Property Name="uDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="pwd_Recovery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email_add" Type="varchar" MaxLength="50" />
+          <Property Name="conf_code" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="cDate" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="role_master">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="detail" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="role_master_details">
+          <Key>
+            <PropertyRef Name="role_detail_id" />
+          </Key>
+          <Property Name="role_detail_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleId" Type="bigint" />
+          <Property Name="page_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="url" Type="nvarchar" MaxLength="50" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="user_id" Type="bigint" />
+        </EntityType>
+        <EntityType Name="shipping_address_master">
+          <Key>
+            <PropertyRef Name="shipping_id" />
+          </Key>
+          <Property Name="shipping_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="bigint" />
+          <Property Name="fname" Type="nvarchar(max)" />
+          <Property Name="lname" Type="nvarchar(max)" />
+          <Property Name="companyName" Type="nvarchar(max)" />
+          <Property Name="line1" Type="nvarchar(max)" />
+          <Property Name="line2" Type="nvarchar(max)" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="pincode" Type="nvarchar" MaxLength="50" />
+          <Property Name="state" Type="nvarchar" MaxLength="50" />
+          <Property Name="country" Type="nvarchar" MaxLength="50" />
+          <Property Name="landmark" Type="nvarchar(max)" />
+          <Property Name="mobile" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="state_price">
+          <Key>
+            <PropertyRef Name="state_price_id" />
+          </Key>
+          <Property Name="state_price_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="state" Type="nvarchar" MaxLength="50" />
+          <Property Name="rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="user_master">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="lname" Type="nvarchar" MaxLength="50" />
+          <Property Name="company_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="addLine1" Type="nvarchar(max)" />
+          <Property Name="addLine2" Type="nvarchar(max)" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="state" Type="nvarchar" MaxLength="50" />
+          <Property Name="pincode" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="dob" Type="date" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_cart_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="cart_master" Type="Self.cart_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="cart_master">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_login_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="login_master" Type="Self.login_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="login_master">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_offerScheme_product_master">
+          <End Role="product_master" Type="Self.product_master" Multiplicity="0..1" />
+          <End Role="offerScheme" Type="Self.offerScheme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_master">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="offerScheme">
+              <PropertyRef Name="pId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_history_offerScheme">
+          <End Role="offerScheme" Type="Self.offerScheme" Multiplicity="0..1" />
+          <End Role="order_history" Type="Self.order_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="offerScheme">
+              <PropertyRef Name="offerId" />
+            </Principal>
+            <Dependent Role="order_history">
+              <PropertyRef Name="offer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_history_order_master">
+          <End Role="order_master" Type="Self.order_master" Multiplicity="0..1" />
+          <End Role="order_history" Type="Self.order_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order_master">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="order_history">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_history_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="order_history" Type="Self.order_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="order_history">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_review_product_master">
+          <End Role="product_master" Type="Self.product_master" Multiplicity="0..1" />
+          <End Role="product_review" Type="Self.product_review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_master">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="product_review">
+              <PropertyRef Name="pId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_review_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="product_review" Type="Self.product_review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="product_review">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPrice_product_master">
+          <End Role="product_master" Type="Self.product_master" Multiplicity="0..1" />
+          <End Role="ProductPrice" Type="Self.ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_master">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="pId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_role_detail_master_role_master">
+          <End Role="role_master" Type="Self.role_master" Multiplicity="0..1" />
+          <End Role="role_master_details" Type="Self.role_master_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role_master">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="role_master_details">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_role_detail_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="role_master_details" Type="Self.role_master_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="role_master_details">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_role_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="role_master" Type="Self.role_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="role_master">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shipping_address_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="shipping_address_master" Type="Self.shipping_address_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="shipping_address_master">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="h2m_EcommerceModelStoreContainer">
+          <EntitySet Name="cart_master" EntityType="Self.cart_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cart_master_details" EntityType="Self.cart_master_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login_master" EntityType="Self.login_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="offer_master_details" EntityType="Self.offer_master_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="offerScheme" EntityType="Self.offerScheme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_history" EntityType="Self.order_history" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_history_details" EntityType="Self.order_history_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_maseter_feedback" EntityType="Self.order_maseter_feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_master" EntityType="Self.order_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_master_details" EntityType="Self.order_master_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_master_payment" EntityType="Self.order_master_payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_master" EntityType="Self.product_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_review" EntityType="Self.product_review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pwd_Recovery" EntityType="Self.pwd_Recovery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role_master" EntityType="Self.role_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role_master_details" EntityType="Self.role_master_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shipping_address_master" EntityType="Self.shipping_address_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="state_price" EntityType="Self.state_price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_master" EntityType="Self.user_master" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_cart_master_user_master" Association="Self.FK_cart_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="cart_master" EntitySet="cart_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_login_master_user_master" Association="Self.FK_login_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="login_master" EntitySet="login_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_offerScheme_product_master" Association="Self.FK_offerScheme_product_master">
+            <End Role="product_master" EntitySet="product_master" />
+            <End Role="offerScheme" EntitySet="offerScheme" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_history_offerScheme" Association="Self.FK_order_history_offerScheme">
+            <End Role="offerScheme" EntitySet="offerScheme" />
+            <End Role="order_history" EntitySet="order_history" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_history_order_master" Association="Self.FK_order_history_order_master">
+            <End Role="order_master" EntitySet="order_master" />
+            <End Role="order_history" EntitySet="order_history" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_history_user_master" Association="Self.FK_order_history_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="order_history" EntitySet="order_history" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_review_product_master" Association="Self.FK_product_review_product_master">
+            <End Role="product_master" EntitySet="product_master" />
+            <End Role="product_review" EntitySet="product_review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_review_user_master" Association="Self.FK_product_review_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="product_review" EntitySet="product_review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPrice_product_master" Association="Self.FK_ProductPrice_product_master">
+            <End Role="product_master" EntitySet="product_master" />
+            <End Role="ProductPrice" EntitySet="ProductPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_detail_master_role_master" Association="Self.FK_role_detail_master_role_master">
+            <End Role="role_master" EntitySet="role_master" />
+            <End Role="role_master_details" EntitySet="role_master_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_detail_master_user_master" Association="Self.FK_role_detail_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="role_master_details" EntitySet="role_master_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_master_user_master" Association="Self.FK_role_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="role_master" EntitySet="role_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shipping_address_master_user_master" Association="Self.FK_shipping_address_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="shipping_address_master" EntitySet="shipping_address_master" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="h2m_EcommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cart_master">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="ipAdd" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="user_master" Relationship="Self.FK_cart_master_user_master" FromRole="cart_master" ToRole="user_master" />
+        </EntityType>
+        <EntityType Name="cart_master_details">
+          <Key>
+            <PropertyRef Name="cart_detail_id" />
+          </Key>
+          <Property Name="cart_detail_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cart_id" Type="Int64" />
+          <Property Name="pid" Type="Int64" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="rate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="offerId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="login_master">
+          <Key>
+            <PropertyRef Name="login_id" />
+          </Key>
+          <Property Name="login_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="Int64" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="type" Type="Int32" />
+          <NavigationProperty Name="user_master" Relationship="Self.FK_login_master_user_master" FromRole="login_master" ToRole="user_master" />
+        </EntityType>
+        <EntityType Name="offer_master_details">
+          <Key>
+            <PropertyRef Name="offer_detail_id" />
+          </Key>
+          <Property Name="offer_detail_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="offerId" Type="Int64" />
+          <Property Name="pId" Type="Int64" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="offerrate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="offerScheme">
+          <Key>
+            <PropertyRef Name="offerId" />
+          </Key>
+          <Property Name="offerId" Type="Int64" Nullable="false" />
+          <Property Name="passedScheme" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="upcoming" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="pId" Type="Int64" />
+          <Property Name="cDate" Type="DateTime" Precision="3" />
+          <Property Name="uDate" Type="DateTime" Precision="3" />
+          <Property Name="offer_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="product_master" Relationship="Self.FK_offerScheme_product_master" FromRole="offerScheme" ToRole="product_master" />
+          <NavigationProperty Name="order_history" Relationship="Self.FK_order_history_offerScheme" FromRole="offerScheme" ToRole="order_history" />
+        </EntityType>
+        <EntityType Name="order_history">
+          <Key>
+            <PropertyRef Name="order_history_id" />
+          </Key>
+          <Property Name="order_history_id" Type="Int64" Nullable="false" />
+          <Property Name="order_id" Type="Int64" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="order_datetime" Type="DateTime" Precision="3" />
+          <Property Name="order_status" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="gtotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="offer_id" Type="Int64" />
+          <NavigationProperty Name="offerScheme" Relationship="Self.FK_order_history_offerScheme" FromRole="order_history" ToRole="offerScheme" />
+          <NavigationProperty Name="order_master" Relationship="Self.FK_order_history_order_master" FromRole="order_history" ToRole="order_master" />
+          <NavigationProperty Name="user_master" Relationship="Self.FK_order_history_user_master" FromRole="order_history" ToRole="user_master" />
+        </EntityType>
+        <EntityType Name="order_history_details">
+          <Key>
+            <PropertyRef Name="order_detail_history_id" />
+          </Key>
+          <Property Name="order_detail_history_id" Type="Int64" Nullable="false" />
+          <Property Name="order_id" Type="Int64" />
+          <Property Name="pid" Type="Int64" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="rate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="offerId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="order_maseter_feedback">
+          <Key>
+            <PropertyRef Name="order_feedback_id" />
+          </Key>
+          <Property Name="order_feedback_id" Type="Int64" Nullable="false" />
+          <Property Name="order_id" Type="Int64" />
+          <Property Name="msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="delete_staus" Type="Int32" />
+        </EntityType>
+        <EntityType Name="order_master">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int64" Nullable="false" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="order_datetime" Type="DateTime" Precision="3" />
+          <Property Name="order_status" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="gtotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="offer_id" Type="Int64" />
+          <Property Name="cartIdTemp" Type="Int64" />
+          <NavigationProperty Name="order_history" Relationship="Self.FK_order_history_order_master" FromRole="order_master" ToRole="order_history" />
+        </EntityType>
+        <EntityType Name="order_master_details">
+          <Key>
+            <PropertyRef Name="order_detail_id" />
+          </Key>
+          <Property Name="order_detail_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Int64" />
+          <Property Name="pid" Type="Int64" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="rate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="offerId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="order_master_payment">
+          <Key>
+            <PropertyRef Name="order_payment_id" />
+          </Key>
+          <Property Name="order_payment_id" Type="Int64" Nullable="false" />
+          <Property Name="order_id" Type="Int64" />
+          <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="delete_status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="product_master">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="weight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="unit" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="nutritionImg" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="shippingCharge" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cDate" Type="DateTime" Precision="3" />
+          <Property Name="uDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="offerSchemes" Relationship="Self.FK_offerScheme_product_master" FromRole="product_master" ToRole="offerScheme" />
+          <NavigationProperty Name="product_review" Relationship="Self.FK_product_review_product_master" FromRole="product_master" ToRole="product_review" />
+          <NavigationProperty Name="ProductPrices" Relationship="Self.FK_ProductPrice_product_master" FromRole="product_master" ToRole="ProductPrice" />
+          <Property Name="taxPer" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="offerDisc" Type="Int32" />
+          <Property Name="offerImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="product_review">
+          <Key>
+            <PropertyRef Name="product_review_id" />
+          </Key>
+          <Property Name="product_review_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pId" Type="Int64" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="delete_stuats" Type="Int32" />
+          <NavigationProperty Name="product_master" Relationship="Self.FK_product_review_product_master" FromRole="product_review" ToRole="product_master" />
+          <NavigationProperty Name="user_master" Relationship="Self.FK_product_review_user_master" FromRole="product_review" ToRole="user_master" />
+        </EntityType>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="priceId" />
+          </Key>
+          <Property Name="priceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pId" Type="Int64" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cDate" Type="DateTime" Precision="3" />
+          <Property Name="uDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="product_master" Relationship="Self.FK_ProductPrice_product_master" FromRole="ProductPrice" ToRole="product_master" />
+        </EntityType>
+        <EntityType Name="pwd_Recovery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email_add" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conf_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="cDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="role_master">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Name="roleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="role_master_details" Relationship="Self.FK_role_detail_master_role_master" FromRole="role_master" ToRole="role_master_details" />
+          <NavigationProperty Name="user_master" Relationship="Self.FK_role_master_user_master" FromRole="role_master" ToRole="user_master" />
+        </EntityType>
+        <EntityType Name="role_master_details">
+          <Key>
+            <PropertyRef Name="role_detail_id" />
+          </Key>
+          <Property Name="role_detail_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleId" Type="Int64" />
+          <Property Name="page_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="user_id" Type="Int64" />
+          <NavigationProperty Name="role_master" Relationship="Self.FK_role_detail_master_role_master" FromRole="role_master_details" ToRole="role_master" />
+          <NavigationProperty Name="user_master" Relationship="Self.FK_role_detail_master_user_master" FromRole="role_master_details" ToRole="user_master" />
+        </EntityType>
+        <EntityType Name="shipping_address_master">
+          <Key>
+            <PropertyRef Name="shipping_id" />
+          </Key>
+          <Property Name="shipping_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int64" />
+          <Property Name="fname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="companyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="line1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="line2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="landmark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="status" Type="Int32" />
+          <NavigationProperty Name="user_master" Relationship="Self.FK_shipping_address_master_user_master" FromRole="shipping_address_master" ToRole="user_master" />
+        </EntityType>
+        <EntityType Name="state_price">
+          <Key>
+            <PropertyRef Name="state_price_id" />
+          </Key>
+          <Property Name="state_price_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="user_master">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="addLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="addLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="cart_master" Relationship="Self.FK_cart_master_user_master" FromRole="user_master" ToRole="cart_master" />
+          <NavigationProperty Name="login_master" Relationship="Self.FK_login_master_user_master" FromRole="user_master" ToRole="login_master" />
+          <NavigationProperty Name="order_history" Relationship="Self.FK_order_history_user_master" FromRole="user_master" ToRole="order_history" />
+          <NavigationProperty Name="product_review" Relationship="Self.FK_product_review_user_master" FromRole="user_master" ToRole="product_review" />
+          <NavigationProperty Name="role_master" Relationship="Self.FK_role_master_user_master" FromRole="user_master" ToRole="role_master" />
+          <NavigationProperty Name="role_master_details" Relationship="Self.FK_role_detail_master_user_master" FromRole="user_master" ToRole="role_master_details" />
+          <NavigationProperty Name="shipping_address_master" Relationship="Self.FK_shipping_address_master_user_master" FromRole="user_master" ToRole="shipping_address_master" />
+        </EntityType>
+        <Association Name="FK_cart_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="cart_master" Type="Self.cart_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="cart_master">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_login_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="login_master" Type="Self.login_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="login_master">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_offerScheme_product_master">
+          <End Role="product_master" Type="Self.product_master" Multiplicity="0..1" />
+          <End Role="offerScheme" Type="Self.offerScheme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_master">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="offerScheme">
+              <PropertyRef Name="pId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_history_offerScheme">
+          <End Role="offerScheme" Type="Self.offerScheme" Multiplicity="0..1" />
+          <End Role="order_history" Type="Self.order_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="offerScheme">
+              <PropertyRef Name="offerId" />
+            </Principal>
+            <Dependent Role="order_history">
+              <PropertyRef Name="offer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_history_order_master">
+          <End Role="order_master" Type="Self.order_master" Multiplicity="0..1" />
+          <End Role="order_history" Type="Self.order_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order_master">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="order_history">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_history_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="order_history" Type="Self.order_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="order_history">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_review_product_master">
+          <End Role="product_master" Type="Self.product_master" Multiplicity="0..1" />
+          <End Role="product_review" Type="Self.product_review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_master">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="product_review">
+              <PropertyRef Name="pId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPrice_product_master">
+          <End Role="product_master" Type="Self.product_master" Multiplicity="0..1" />
+          <End Role="ProductPrice" Type="Self.ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_master">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="pId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_review_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="product_review" Type="Self.product_review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="product_review">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_role_detail_master_role_master">
+          <End Role="role_master" Type="Self.role_master" Multiplicity="0..1" />
+          <End Role="role_master_details" Type="Self.role_master_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role_master">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="role_master_details">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_role_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="role_master" Type="Self.role_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="role_master">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_role_detail_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="role_master_details" Type="Self.role_master_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="role_master_details">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shipping_address_master_user_master">
+          <End Role="user_master" Type="Self.user_master" Multiplicity="0..1" />
+          <End Role="shipping_address_master" Type="Self.shipping_address_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="shipping_address_master">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EcommerceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cart_master" EntityType="Self.cart_master" />
+          <EntitySet Name="cart_master_details" EntityType="Self.cart_master_details" />
+          <EntitySet Name="login_master" EntityType="Self.login_master" />
+          <EntitySet Name="offer_master_details" EntityType="Self.offer_master_details" />
+          <EntitySet Name="offerSchemes" EntityType="Self.offerScheme" />
+          <EntitySet Name="order_history" EntityType="Self.order_history" />
+          <EntitySet Name="order_history_details" EntityType="Self.order_history_details" />
+          <EntitySet Name="order_maseter_feedback" EntityType="Self.order_maseter_feedback" />
+          <EntitySet Name="order_master" EntityType="Self.order_master" />
+          <EntitySet Name="order_master_details" EntityType="Self.order_master_details" />
+          <EntitySet Name="order_master_payment" EntityType="Self.order_master_payment" />
+          <EntitySet Name="product_master" EntityType="Self.product_master" />
+          <EntitySet Name="product_review" EntityType="Self.product_review" />
+          <EntitySet Name="ProductPrices" EntityType="Self.ProductPrice" />
+          <EntitySet Name="pwd_Recovery" EntityType="Self.pwd_Recovery" />
+          <EntitySet Name="role_master" EntityType="Self.role_master" />
+          <EntitySet Name="role_master_details" EntityType="Self.role_master_details" />
+          <EntitySet Name="shipping_address_master" EntityType="Self.shipping_address_master" />
+          <EntitySet Name="state_price" EntityType="Self.state_price" />
+          <EntitySet Name="user_master" EntityType="Self.user_master" />
+          <AssociationSet Name="FK_cart_master_user_master" Association="Self.FK_cart_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="cart_master" EntitySet="cart_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_login_master_user_master" Association="Self.FK_login_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="login_master" EntitySet="login_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_offerScheme_product_master" Association="Self.FK_offerScheme_product_master">
+            <End Role="product_master" EntitySet="product_master" />
+            <End Role="offerScheme" EntitySet="offerSchemes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_history_offerScheme" Association="Self.FK_order_history_offerScheme">
+            <End Role="offerScheme" EntitySet="offerSchemes" />
+            <End Role="order_history" EntitySet="order_history" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_history_order_master" Association="Self.FK_order_history_order_master">
+            <End Role="order_master" EntitySet="order_master" />
+            <End Role="order_history" EntitySet="order_history" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_history_user_master" Association="Self.FK_order_history_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="order_history" EntitySet="order_history" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_review_product_master" Association="Self.FK_product_review_product_master">
+            <End Role="product_master" EntitySet="product_master" />
+            <End Role="product_review" EntitySet="product_review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPrice_product_master" Association="Self.FK_ProductPrice_product_master">
+            <End Role="product_master" EntitySet="product_master" />
+            <End Role="ProductPrice" EntitySet="ProductPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_review_user_master" Association="Self.FK_product_review_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="product_review" EntitySet="product_review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_detail_master_role_master" Association="Self.FK_role_detail_master_role_master">
+            <End Role="role_master" EntitySet="role_master" />
+            <End Role="role_master_details" EntitySet="role_master_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_master_user_master" Association="Self.FK_role_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="role_master" EntitySet="role_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_role_detail_master_user_master" Association="Self.FK_role_detail_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="role_master_details" EntitySet="role_master_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shipping_address_master_user_master" Association="Self.FK_shipping_address_master_user_master">
+            <End Role="user_master" EntitySet="user_master" />
+            <End Role="shipping_address_master" EntitySet="shipping_address_master" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="h2m_EcommerceModelStoreContainer" CdmEntityContainer="EcommerceEntities">
+          <EntitySetMapping Name="cart_master">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.cart_master">
+              <MappingFragment StoreEntitySet="cart_master">
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ipAdd" ColumnName="ipAdd" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cart_master_details">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.cart_master_details">
+              <MappingFragment StoreEntitySet="cart_master_details">
+                <ScalarProperty Name="cart_detail_id" ColumnName="cart_detail_id" />
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="login_master">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.login_master">
+              <MappingFragment StoreEntitySet="login_master">
+                <ScalarProperty Name="login_id" ColumnName="login_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offer_master_details">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.offer_master_details">
+              <MappingFragment StoreEntitySet="offer_master_details">
+                <ScalarProperty Name="offer_detail_id" ColumnName="offer_detail_id" />
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+                <ScalarProperty Name="pId" ColumnName="pId" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="offerrate" ColumnName="offerrate" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offerSchemes">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.offerScheme">
+              <MappingFragment StoreEntitySet="offerScheme">
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+                <ScalarProperty Name="passedScheme" ColumnName="passedScheme" />
+                <ScalarProperty Name="upcoming" ColumnName="upcoming" />
+                <ScalarProperty Name="pId" ColumnName="pId" />
+                <ScalarProperty Name="cDate" ColumnName="cDate" />
+                <ScalarProperty Name="uDate" ColumnName="uDate" />
+                <ScalarProperty Name="offer_type" ColumnName="offer_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_history">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.order_history">
+              <MappingFragment StoreEntitySet="order_history">
+                <ScalarProperty Name="order_history_id" ColumnName="order_history_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="order_datetime" ColumnName="order_datetime" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="gtotal" ColumnName="gtotal" />
+                <ScalarProperty Name="offer_id" ColumnName="offer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_history_details">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.order_history_details">
+              <MappingFragment StoreEntitySet="order_history_details">
+                <ScalarProperty Name="order_detail_history_id" ColumnName="order_detail_history_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_maseter_feedback">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.order_maseter_feedback">
+              <MappingFragment StoreEntitySet="order_maseter_feedback">
+                <ScalarProperty Name="order_feedback_id" ColumnName="order_feedback_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="msg" ColumnName="msg" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="delete_staus" ColumnName="delete_staus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_master">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.order_master">
+              <MappingFragment StoreEntitySet="order_master">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="order_datetime" ColumnName="order_datetime" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="gtotal" ColumnName="gtotal" />
+                <ScalarProperty Name="offer_id" ColumnName="offer_id" />
+                <ScalarProperty Name="cartIdTemp" ColumnName="cartIdTemp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_master_details">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.order_master_details">
+              <MappingFragment StoreEntitySet="order_master_details">
+                <ScalarProperty Name="order_detail_id" ColumnName="order_detail_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_master_payment">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.order_master_payment">
+              <MappingFragment StoreEntitySet="order_master_payment">
+                <ScalarProperty Name="order_payment_id" ColumnName="order_payment_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="payment_type" ColumnName="payment_type" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="delete_status" ColumnName="delete_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_master">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.product_master">
+              <MappingFragment StoreEntitySet="product_master">
+                <ScalarProperty Name="offerImg" ColumnName="offerImg" />
+                <ScalarProperty Name="offerDisc" ColumnName="offerDisc" />
+                <ScalarProperty Name="taxPer" ColumnName="taxPer" />
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="pname" ColumnName="pname" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="nutritionImg" ColumnName="nutritionImg" />
+                <ScalarProperty Name="shippingCharge" ColumnName="shippingCharge" />
+                <ScalarProperty Name="cDate" ColumnName="cDate" />
+                <ScalarProperty Name="uDate" ColumnName="uDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_review">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.product_review">
+              <MappingFragment StoreEntitySet="product_review">
+                <ScalarProperty Name="product_review_id" ColumnName="product_review_id" />
+                <ScalarProperty Name="pId" ColumnName="pId" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="delete_stuats" ColumnName="delete_stuats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPrices">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.ProductPrice">
+              <MappingFragment StoreEntitySet="ProductPrice">
+                <ScalarProperty Name="priceId" ColumnName="priceId" />
+                <ScalarProperty Name="pId" ColumnName="pId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="cDate" ColumnName="cDate" />
+                <ScalarProperty Name="uDate" ColumnName="uDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pwd_Recovery">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.pwd_Recovery">
+              <MappingFragment StoreEntitySet="pwd_Recovery">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="email_add" ColumnName="email_add" />
+                <ScalarProperty Name="conf_code" ColumnName="conf_code" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="cDate" ColumnName="cDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role_master">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.role_master">
+              <MappingFragment StoreEntitySet="role_master">
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role_master_details">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.role_master_details">
+              <MappingFragment StoreEntitySet="role_master_details">
+                <ScalarProperty Name="role_detail_id" ColumnName="role_detail_id" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="page_name" ColumnName="page_name" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shipping_address_master">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.shipping_address_master">
+              <MappingFragment StoreEntitySet="shipping_address_master">
+                <ScalarProperty Name="shipping_id" ColumnName="shipping_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="line1" ColumnName="line1" />
+                <ScalarProperty Name="line2" ColumnName="line2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="landmark" ColumnName="landmark" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="state_price">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.state_price">
+              <MappingFragment StoreEntitySet="state_price">
+                <ScalarProperty Name="state_price_id" ColumnName="state_price_id" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_master">
+            <EntityTypeMapping TypeName="h2m_EcommerceModel.user_master">
+              <MappingFragment StoreEntitySet="user_master">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="company_name" ColumnName="company_name" />
+                <ScalarProperty Name="addLine1" ColumnName="addLine1" />
+                <ScalarProperty Name="addLine2" ColumnName="addLine2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

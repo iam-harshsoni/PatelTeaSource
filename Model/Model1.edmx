@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="patelteaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="awardsCertificates">
+          <Key>
+            <PropertyRef Name="awardId" />
+          </Key>
+          <Property Name="awardId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="awardImg" Type="nvarchar" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="150" />
+          <Property Name="year" Type="nvarchar" MaxLength="50" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="banner_master">
+          <Key>
+            <PropertyRef Name="banner_id" />
+          </Key>
+          <Property Name="banner_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bannerImg" Type="varchar" MaxLength="150" />
+          <Property Name="bannerHeader" Type="nchar" MaxLength="100" />
+          <Property Name="bannerDesc" Type="nchar" MaxLength="200" />
+          <Property Name="status" Type="int" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="blog_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="date" Type="varchar" MaxLength="50" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Company_master">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cname" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mob" Type="nvarchar" MaxLength="50" />
+          <Property Name="addressline1" Type="nvarchar" MaxLength="50" />
+          <Property Name="addressline2" Type="nvarchar" MaxLength="50" />
+          <Property Name="maplocation" Type="nvarchar(max)" />
+          <Property Name="LocLat" Type="varchar" MaxLength="50" />
+          <Property Name="LocLong" Type="varchar" MaxLength="50" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="contact_master">
+          <Key>
+            <PropertyRef Name="contact_id" />
+          </Key>
+          <Property Name="contact_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="subject" Type="nvarchar(max)" />
+          <Property Name="message" Type="nvarchar(max)" />
+          <Property Name="reply" Type="nvarchar(max)" />
+          <Property Name="address" Type="nvarchar(max)" />
+          <Property Name="status" Type="int" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="distibuter_master">
+          <Key>
+            <PropertyRef Name="dis_id" />
+          </Key>
+          <Property Name="dis_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="fulladdress" Type="nvarchar(max)" />
+          <Property Name="state" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="pincode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ownername" Type="nvarchar" MaxLength="50" />
+          <Property Name="contactno" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="map" Type="nvarchar(max)" />
+          <Property Name="locLat" Type="nvarchar" MaxLength="50" />
+          <Property Name="locLong" Type="varchar" MaxLength="50" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="feedback_master">
+          <Key>
+            <PropertyRef Name="feed_id" />
+          </Key>
+          <Property Name="feed_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="mob" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="cdate" Type="datetime" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="msg" Type="nvarchar(max)" />
+          <Property Name="code" Type="bigint" />
+        </EntityType>
+        <EntityType Name="GlobalParameters">
+          <Key>
+            <PropertyRef Name="gId" />
+          </Key>
+          <Property Name="gId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="globalParamKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="globalParamValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="cDate" Type="datetime" />
+          <Property Name="uDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NewUserRegister">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="fullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="emailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="role" Type="varchar" MaxLength="50" />
+          <Property Name="userType" Type="varchar" MaxLength="50" />
+          <Property Name="cDate" Type="datetime" />
+          <Property Name="uDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="userLogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="lastLogin" Type="datetime" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updateDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_userLogin_NewUserRegister">
+          <End Role="NewUserRegister" Type="Self.NewUserRegister" Multiplicity="0..1" />
+          <End Role="userLogin" Type="Self.userLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewUserRegister">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="userLogin">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="patelteaModelStoreContainer">
+          <EntitySet Name="awardsCertificates" EntityType="Self.awardsCertificates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="banner_master" EntityType="Self.banner_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blog_master" EntityType="Self.blog_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company_master" EntityType="Self.Company_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contact_master" EntityType="Self.contact_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="distibuter_master" EntityType="Self.distibuter_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedback_master" EntityType="Self.feedback_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GlobalParameters" EntityType="Self.GlobalParameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewUserRegister" EntityType="Self.NewUserRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userLogin" EntityType="Self.userLogin" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_userLogin_NewUserRegister" Association="Self.FK_userLogin_NewUserRegister">
+            <End Role="NewUserRegister" EntitySet="NewUserRegister" />
+            <End Role="userLogin" EntitySet="userLogin" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="patelteaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="awardsCertificate">
+          <Key>
+            <PropertyRef Name="awardId" />
+          </Key>
+          <Property Name="awardId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="awardImg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="banner_master">
+          <Key>
+            <PropertyRef Name="banner_id" />
+          </Key>
+          <Property Name="banner_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bannerImg" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="bannerHeader" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="bannerDesc" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Company_master">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mob" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="addressline1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="addressline2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="maplocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="LocLat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LocLong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="distibuter_master">
+          <Key>
+            <PropertyRef Name="dis_id" />
+          </Key>
+          <Property Name="dis_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fulladdress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ownername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contactno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="map" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="locLat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="locLong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="feedback_master">
+          <Key>
+            <PropertyRef Name="feed_id" />
+          </Key>
+          <Property Name="feed_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mob" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+          <Property Name="msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="Int64" />
+        </EntityType>
+        <EntityType Name="NewUserRegister">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cDate" Type="DateTime" Precision="3" />
+          <Property Name="uDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="userLogins" Relationship="Self.FK_userLogin_NewUserRegister" FromRole="NewUserRegister" ToRole="userLogin" />
+        </EntityType>
+        <EntityType Name="userLogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="lastLogin" Type="DateTime" Precision="3" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="NewUserRegister" Relationship="Self.FK_userLogin_NewUserRegister" FromRole="userLogin" ToRole="NewUserRegister" />
+        </EntityType>
+        <Association Name="FK_userLogin_NewUserRegister">
+          <End Role="NewUserRegister" Type="Self.NewUserRegister" Multiplicity="0..1" />
+          <End Role="userLogin" Type="Self.userLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewUserRegister">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="userLogin">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="patelteaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="awardsCertificates" EntityType="Self.awardsCertificate" />
+          <EntitySet Name="banner_master" EntityType="Self.banner_master" />
+          <EntitySet Name="Company_master" EntityType="Self.Company_master" />
+          <EntitySet Name="distibuter_master" EntityType="Self.distibuter_master" />
+          <EntitySet Name="feedback_master" EntityType="Self.feedback_master" />
+          <EntitySet Name="NewUserRegisters" EntityType="Self.NewUserRegister" />
+          <EntitySet Name="userLogins" EntityType="Self.userLogin" />
+          <AssociationSet Name="FK_userLogin_NewUserRegister" Association="Self.FK_userLogin_NewUserRegister">
+            <End Role="NewUserRegister" EntitySet="NewUserRegisters" />
+            <End Role="userLogin" EntitySet="userLogins" />
+          </AssociationSet>
+          <EntitySet Name="contact_master" EntityType="patelteaModel.contact_master" />
+          <EntitySet Name="GlobalParameters" EntityType="patelteaModel.GlobalParameter" />
+          <EntitySet Name="blog_master" EntityType="patelteaModel.blog_master" />
+        </EntityContainer>
+        <EntityType Name="contact_master">
+          <Key>
+            <PropertyRef Name="contact_id" />
+          </Key>
+          <Property Name="contact_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="reply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GlobalParameter">
+          <Key>
+            <PropertyRef Name="gId" />
+          </Key>
+          <Property Name="gId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="globalParamKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="globalParamValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cDate" Type="DateTime" Precision="3" />
+          <Property Name="uDate" Type="DateTime" Precision="3" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="blog_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cdate" Type="DateTime" Precision="3" />
+          <Property Name="udate" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="patelteaModelStoreContainer" CdmEntityContainer="patelteaEntities">
+          <EntitySetMapping Name="awardsCertificates">
+            <EntityTypeMapping TypeName="patelteaModel.awardsCertificate">
+              <MappingFragment StoreEntitySet="awardsCertificates">
+                <ScalarProperty Name="awardId" ColumnName="awardId" />
+                <ScalarProperty Name="awardImg" ColumnName="awardImg" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="banner_master">
+            <EntityTypeMapping TypeName="patelteaModel.banner_master">
+              <MappingFragment StoreEntitySet="banner_master">
+                <ScalarProperty Name="banner_id" ColumnName="banner_id" />
+                <ScalarProperty Name="bannerImg" ColumnName="bannerImg" />
+                <ScalarProperty Name="bannerHeader" ColumnName="bannerHeader" />
+                <ScalarProperty Name="bannerDesc" ColumnName="bannerDesc" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company_master">
+            <EntityTypeMapping TypeName="patelteaModel.Company_master">
+              <MappingFragment StoreEntitySet="Company_master">
+                <ScalarProperty Name="LocLong" ColumnName="LocLong" />
+                <ScalarProperty Name="LocLat" ColumnName="LocLat" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="cname" ColumnName="cname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mob" ColumnName="mob" />
+                <ScalarProperty Name="addressline1" ColumnName="addressline1" />
+                <ScalarProperty Name="addressline2" ColumnName="addressline2" />
+                <ScalarProperty Name="maplocation" ColumnName="maplocation" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="distibuter_master">
+            <EntityTypeMapping TypeName="patelteaModel.distibuter_master">
+              <MappingFragment StoreEntitySet="distibuter_master">
+                <ScalarProperty Name="locLong" ColumnName="locLong" />
+                <ScalarProperty Name="locLat" ColumnName="locLat" />
+                <ScalarProperty Name="dis_id" ColumnName="dis_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="fulladdress" ColumnName="fulladdress" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="ownername" ColumnName="ownername" />
+                <ScalarProperty Name="contactno" ColumnName="contactno" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="map" ColumnName="map" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feedback_master">
+            <EntityTypeMapping TypeName="patelteaModel.feedback_master">
+              <MappingFragment StoreEntitySet="feedback_master">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="feed_id" ColumnName="feed_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="mob" ColumnName="mob" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="msg" ColumnName="msg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewUserRegisters">
+            <EntityTypeMapping TypeName="patelteaModel.NewUserRegister">
+              <MappingFragment StoreEntitySet="NewUserRegister">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="emailId" ColumnName="emailId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="cDate" ColumnName="cDate" />
+                <ScalarProperty Name="uDate" ColumnName="uDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userLogins">
+            <EntityTypeMapping TypeName="patelteaModel.userLogin">
+              <MappingFragment StoreEntitySet="userLogin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contact_master">
+            <EntityTypeMapping TypeName="patelteaModel.contact_master">
+              <MappingFragment StoreEntitySet="contact_master">
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="reply" ColumnName="reply" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GlobalParameters">
+            <EntityTypeMapping TypeName="patelteaModel.GlobalParameter">
+              <MappingFragment StoreEntitySet="GlobalParameters">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="uDate" ColumnName="uDate" />
+                <ScalarProperty Name="cDate" ColumnName="cDate" />
+                <ScalarProperty Name="globalParamValue" ColumnName="globalParamValue" />
+                <ScalarProperty Name="globalParamKey" ColumnName="globalParamKey" />
+                <ScalarProperty Name="gId" ColumnName="gId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blog_master">
+            <EntityTypeMapping TypeName="patelteaModel.blog_master">
+              <MappingFragment StoreEntitySet="blog_master">
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="cdate" ColumnName="cdate" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
